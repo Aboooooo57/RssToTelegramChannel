@@ -19,24 +19,24 @@ Requirements
 Installation
 
 	1.	Clone the repository:
-        ''' 
+        ```
         git clone <repository-url>
         cd <repository-name>
-        '''
+        ```
 
 
     2.	Install required dependencies:
         
-        '''
+       	```
         pip install -r requirements.txt
-        '''
+        ```
 
     3.	Create a .env file and configure the necessary variables:
-        '''
+        ```
         TELEGRAM_API_KEY=<your_telegram_api_key>
         TELEGRAM_CHAT_ID=<your_telegram_chat_id>
         RSS_URL=<rss_feed_url>
-        '''
+        ```
 
 4.	Verify the RSS_URL and ensure it points to a valid RSS feed.
 
