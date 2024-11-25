@@ -4,41 +4,36 @@ This project automates the process of fetching RSS feeds, processing the news da
 
 Features
 
-	•	Fetches news from an RSS feed.
-	•	Cleans and processes news content (removing unwanted characters).
-	•	Converts publication dates to the Jalali calendar.
-	•	Sends news messages (with or without images) to a Telegram channel.
-	•	Avoids duplicate news by storing unique news IDs in a database.
+•Fetches news from an RSS feed.
+•Cleans and processes news content (removing unwanted characters).
+•Converts publication dates to the Jalali calendar.
+•Sends news messages (with or without images) to a Telegram channel.
+•Avoids duplicate news by storing unique news IDs in a database.
 
 Requirements
 
-	•	Python 3.12 or later
-	•	SQLite for local database storage
-	•	A .env file containing necessary API keys and configurations
+	•Python 3.12 or later
+	•SQLite for local database storage
+	•A .env file containing necessary API keys and configurations
 
 Installation
 
-	1.	Clone the repository:
-        ```
-        git clone <repository-url>
-        cd <repository-name>
-        ```
+1.Clone the repository:
 
-
-    2.	Install required dependencies:
+	git clone <repository-url>
+	cd <repository-name>
         
-       	```
-        pip install -r requirements.txt
-        ```
+2.Install required dependencies:
+        
+	pip install -r requirements.txt
 
-    3.	Create a .env file and configure the necessary variables:
-        ```
+3.Create a .env file and configure the necessary variables:
+  
         TELEGRAM_API_KEY=<your_telegram_api_key>
         TELEGRAM_CHAT_ID=<your_telegram_chat_id>
         RSS_URL=<rss_feed_url>
-        ```
 
-4.	Verify the RSS_URL and ensure it points to a valid RSS feed.
+4.Verify the RSS_URL and ensure it points to a valid RSS feed.
 
 File Structure
 
