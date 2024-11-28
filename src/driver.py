@@ -1,3 +1,5 @@
+import re
+
 from bs4 import BeautifulSoup
 from rss import fetch_rss
 from telegram import send_image_to_telegram, send_message_to_telegram
@@ -25,6 +27,7 @@ async def drive():
             title = entry.title
             link = entry.link
             description = clean_description(entry.description)
+
             pub_date = datetime_to_jalali(entry.published_parsed)
             image_url = entry.enclosures[0].get("url", "") if entry.enclosures else ""
             formatted_link = f"[ادامه مطلب]({link})"
@@ -44,9 +47,9 @@ async def drive():
 
 
 def clean_description(description):
-    description = description.replace('&zwnj;', " ")
     soup = BeautifulSoup(description, "html.parser")
     clean_text = html.unescape(soup.get_text(strip=True))
     clean_text = ' '.join(clean_text.split())
-
+    clean_text = re.sub(r'&amp;#13;|&amp;|&zwnj;|zwnj&|zwnj;|nbsp;|&nbsp;|laquo;|raquo;|zwnj|amp;|nbsp|&', '',
+                         clean_text)
     return clean_text
