@@ -1,5 +1,3 @@
-import re
-import html
 from bs4 import BeautifulSoup
 from rss import fetch_rss
 from telegram import send_image_to_telegram, send_message_to_telegram
