@@ -1,13 +1,17 @@
-import asyncio
 import re
+import html
+from bs4 import BeautifulSoup
 from rss import fetch_rss
 from telegram import send_image_to_telegram, send_message_to_telegram
 from db import check_news_exists, insert_news_db, connect_db, create_table
 from dotenv import load_dotenv
 from utils import datetime_to_jalali, get_uid_news
+import html
+
 load_dotenv()
 
 from settings import RSS_URL
+
 
 async def drive():
     feed = fetch_rss(RSS_URL)
@@ -22,8 +26,7 @@ async def drive():
 
             title = entry.title
             link = entry.link
-            description = re.sub(r'&amp;#13;|&amp;|&zwnj;|zwnj;|nbsp;|&nbsp;|laquo;|raquo;|zwnj|amp;|nbsp|', '',
-                                 entry.description)
+            description = clean_description(entry.description)
             pub_date = datetime_to_jalali(entry.published_parsed)
             image_url = entry.enclosures[0].get("url", "") if entry.enclosures else ""
             formatted_link = f"[ادامه مطلب]({link})"
@@ -42,5 +45,10 @@ async def drive():
                 print(f"Problem while Send Or inserting news {e} ")
 
 
-if __name__ == "__main__":
-    asyncio.run(drive())
+def clean_description(description):
+    description = description.replace('&zwnj;', " ")
+    soup = BeautifulSoup(description, "html.parser")
+    clean_text = html.unescape(soup.get_text(strip=True))
+    clean_text = ' '.join(clean_text.split())
+
+    return clean_text
